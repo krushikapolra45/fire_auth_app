@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778947509080",
+    "project_id": "fire-auth-app-bcb1c",
+    "storage_bucket": "fire-auth-app-bcb1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778947509080:android:9f3380dc6353b84efe832d",
+        "android_client_info": {
+          "package_name": "com.app.fire_auth_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGRmXUEQG85LfbSY0Dm6Vt-_0OOSWjPhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

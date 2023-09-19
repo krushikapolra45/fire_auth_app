@@ -51,7 +51,6 @@ class _SignUpViewState extends State<SignUpView> {
                       ),
                       // contentPadding: const EdgeInsets.all(00),
                       isDense: true,
-
                       hintText: " Name ",
                       contentPadding: const EdgeInsets.all(12),
                       hintStyle: const TextStyle(
@@ -143,27 +142,26 @@ class _SignUpViewState extends State<SignUpView> {
                       ),
                     ),
                     onPressed: () {
-                      signupCall();
                       if (formkey.currentState!.validate()) {
-                        debugPrint("is valid");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginView(),
-                          ),
-                        );
-                      } else {
-                        debugPrint("is not valid");
+                        signupCall();
+                        //   debugPrint("is valid");
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => const LoginView(),
+                        //     ),
+                        //   );
+                        // } else {
+                        //   debugPrint("is not valid");
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       textAlign: TextAlign.center,
                       ("signup"),
                       style: TextStyle(
                         fontSize: 17,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
-                        fontFamily: "Poppins",
                       ),
                     ),
                   ),

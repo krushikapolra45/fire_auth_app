@@ -104,18 +104,17 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                       onPressed: () {
-                        loginCall();
-                        if (formkey.currentState!.validate()) {
-                          debugPrint("is valid");
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const HomeView(),
-                          //   ),
-                          // );
-                        } else {
-                          debugPrint("is not valid");
-                        }
+                        // if (formkey.currentState!.validate()) {
+                        //   debugPrint("is valid");
+                        //   // Navigator.push(
+                        //   //   context,
+                        //   //   MaterialPageRoute(
+                        //   //     builder: (context) => const HomeView(),
+                        //   //   ),
+                        //   // );
+                        // } else {
+                        //   debugPrint("is not valid");
+                        // }
                       },
                       child: const Text(
                         textAlign: TextAlign.center,
@@ -156,7 +155,7 @@ class _LoginViewState extends State<LoginView> {
           )
           .then(
             (value) => (value) {
-              debugPrint(value.user.toString());
+              //             debugPrint(value.user.toString());
               setState(() {});
             },
           );

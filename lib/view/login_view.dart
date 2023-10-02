@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:github_sign_in/github_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'sign_up_view.dart';
 
@@ -136,6 +138,22 @@ class _LoginViewState extends State<LoginView> {
                           );
                         },
                         child: const Text("account")),
+                    TextButton(
+                        onPressed: () {
+                          signInWithGitHub();
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const SignUpView(),
+                          //   ),
+                          // );
+                        },
+                        child: const Text("github")),
+                    TextButton(
+                        onPressed: () {
+                          signInWithGoogle();
+                        },
+                        child: Text("Login with google"))
                   ],
                 ),
               ),
@@ -167,6 +185,45 @@ class _LoginViewState extends State<LoginView> {
       }
     } catch (e) {
       debugPrint("$e ------------------------------------------------------------------->>>");
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (error) {
+      debugPrint("Error -----> $error");
+    }
+  }
+
+  Future<void> signInWithGitHub() async {
+    try {
+      // Create a GitHubSignIn instance
+      final GitHubSignIn gitHubSignIn = GitHubSignIn(clientId: 'ee4c602212a9dab2c5aa', clientSecret: 'bc12b1a4be239f369150215b973392ee03fb21af', redirectUrl: 'https://my-project.firebaseapp.com/__/auth/handler',);
+
+      // Trigger the sign-in flow
+      final result = await gitHubSignIn.signIn(context);
+
+      // Create a credential from the access token
+      final githubAuthCredential = GithubAuthProvider.credential(result.errorMessage);
+
+      // Once signed in, return the UserCredential
+      await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
+    } catch (error) {
+      debugPrint("Error -----> $error");
     }
   }
 }
